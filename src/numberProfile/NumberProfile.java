@@ -19,11 +19,11 @@ public class NumberProfile {
         return factors <= 2;
     }
 
-    public static int getFactorOfNumber(int userInput) {
-        int factors = 0;
+    public static String getFactorOfNumber(int userInput) {
+        String factors = "";
         for (int count = 1; count <= userInput; count++) {
             if (userInput % count == 0)
-                factors++;
+                factors  += count;
         }
         return factors;
     }
@@ -131,7 +131,7 @@ public class NumberProfile {
         int sum = 0;
         while (userNumber != 0) {
             remainder = userNumber % 10;
-            sum += getFactorial(remainder);
+            sum += (int)getFactorial(remainder);
             userNumber /= 10;
         }
         return sum == userInput;
