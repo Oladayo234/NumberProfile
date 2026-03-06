@@ -142,7 +142,7 @@ public class NumberProfile {
         return false;
     }
 
-    public static boolean getPositiveNumber(int userInput) {
+    public static boolean getNaturalNumber(int userInput) {
         return userInput > 0;
     }
 
@@ -182,20 +182,76 @@ public class NumberProfile {
         return factors < userInput;
     }
 
-    private static int getDigitalSum(int userInput) {
-        int remainder;
+    public static int getDigitalSum(int userInput) {
         int sum = 0;
         while (userInput != 0) {
-            remainder = userInput % 10;
-            sum += remainder;
+            sum += userInput % 10;
             userInput /= 10;
         }
         return sum;
     }
 
+    public static boolean getInteger(double userInput) {
+        return userInput >= 0 && userInput == Math.floor(userInput);
+    }
+
+    public static String convertToBinary(int userInput){
+        if(userInput < 0){
+            userInput *= -1;
+        }
+        if (userInput == 0) {
+            return "0";
+        }
+        String binary = "";
+        while(userInput != 0){
+            binary = (userInput % 2) + binary;
+            userInput /= 2;
+        }
+        return binary;
+    }
+
+    public static String convertToOctalDecimal(int userInput){
+        if(userInput < 0){
+            userInput *= -1;
+        }
+        if (userInput == 0) {
+            return "0";
+        }
+        String octadecimal = "";
+        while(userInput != 0){
+            octadecimal = (userInput % 8) + octadecimal;
+            userInput /= 8;
+        }
+        return octadecimal;
+    }
+
+    public static String convertToHexadecimal(int userInput){
+        if(userInput < 0){
+            userInput *= -1;
+        }
+        if (userInput == 0) {
+            return "0";
+        }
+        String hexCharacters = "0123456789ABCDEF";
+        String hex = "";
+        while(userInput != 0){
+            hex = hexCharacters.charAt(userInput % 16) + hex;
+            userInput /= 16;
+        }
+        return hex;
+    }
+
+    public static boolean checkIsFibonacci(int userInput){
+      int[] fibonacci = {0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181};
+      for(int count = 1; count < fibonacci.length; count++){
+          if(fibonacci[count] == userInput)
+              return true;
+      }
+      return false;
+    }
 
     public static void getProfileOfNumber(int userInput) {
-        if (NumberProfile.getPositiveNumber(userInput))         System.out.println(userInput + " is a Positive Number");
+        if (NumberProfile.getNaturalNumber(userInput))         System.out.println(userInput + " is a Natural Number");
         if (NumberProfile.getNegativeNumber(userInput))         System.out.println(userInput + " is a Negative Number");
         if (NumberProfile.checkIfNumberIsZero(userInput))         System.out.println(userInput + " is Zero");
         if (NumberProfile.checkIsEven(userInput))         System.out.println(userInput + " is an Even Number");
@@ -213,12 +269,15 @@ public class NumberProfile {
         if (NumberProfile.getSpyNumber(userInput))    System.out.println(userInput + " is a Spy number");
         if (NumberProfile.checkIsCube(userInput))         System.out.println(userInput + " is a Cube number");
         if (NumberProfile.checkIsStrongNumber(userInput)) System.out.println(userInput + " is a Strong number");
+        if (NumberProfile.getInteger(userInput)) System.out.println(userInput + " is an Integer");
+        if (NumberProfile.checkIsFibonacci(userInput)) System.out.println(userInput + " is in the Fibonacci Sequence");
 
         System.out.println("Factors:   " + NumberProfile.getFactorOfNumber(userInput));
         System.out.println("Square:    " + NumberProfile.getSquareOfNumber(userInput));
         System.out.println("Factorial: " + NumberProfile.getFactorial(userInput));
         System.out.println("Digital Sum: " + NumberProfile.getDigitalSum(userInput));
+        System.out.println("Binary: " + NumberProfile.convertToBinary(userInput));
+        System.out.println("OctaDecimal: " + NumberProfile.convertToOctalDecimal(userInput));
+        System.out.println("HexaDecimal: " + NumberProfile.convertToHexadecimal(userInput));
     }
-
-
 }
