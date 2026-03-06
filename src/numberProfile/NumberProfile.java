@@ -68,26 +68,18 @@ public class NumberProfile {
     }
 
     public static boolean checkArmstrongNumber(int userInput) {
+        int newNumber = userInput;
+        String lengthOfNumbers = String.valueOf(newNumber);
+        int length = lengthOfNumbers.length();
+        double sum = 0;
+        double digit;
 
-        for (int count = 1; count <= userInput; count++) {
-            int newNumber = count;
-            String lengthOfNumbers = String.valueOf(newNumber);
-            int length = lengthOfNumbers.length();
-            double exponential;
-            double sum = 0;
-            double digit;
-
-            while (newNumber != 0) {
-                digit = newNumber % 10;
-                exponential = Math.pow(digit, length);
-                sum += exponential;
-                newNumber = newNumber / 10;
-            }
-            if (sum == count) {
-                return true;
-            }
+        while (newNumber != 0) {
+            digit = newNumber % 10;
+            sum += Math.pow(digit, length);
+            newNumber = newNumber / 10;
         }
-        return false;
+        return sum == userInput;
     }
 
     public static boolean checkIsPerfectNumber(int userInput) {
@@ -113,7 +105,7 @@ public class NumberProfile {
             sum += remainder;
             userNumber = userNumber / 10;
         }
-        return userInput / sum == 0;
+        return userInput % sum == 0;
     }
 
     public static boolean getSpyNumber(int userInput) {
