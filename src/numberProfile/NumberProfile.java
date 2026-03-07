@@ -250,6 +250,24 @@ public class NumberProfile {
       return false;
     }
 
+    public static boolean getAmiableNumber(int userInput) {
+        int sumA = 0;
+        for(int count = 1; count < userInput; count++) {
+            if(userInput % count == 0)
+                sumA += count;
+        }
+        int sumB = 0;
+        for(int index = 1; index < sumA; index++) {
+            if(sumB % index == 0)
+                sumB += index;
+        }
+        return sumB == userInput && sumA != userInput;
+    }
+
+    public static boolean getCoPrime(int userInput){
+
+    }
+
     public static void getProfileOfNumber(int userInput) {
         if (NumberProfile.getNaturalNumber(userInput))         System.out.println(userInput + " is a Natural Number");
         if (NumberProfile.getNegativeNumber(userInput))         System.out.println(userInput + " is a Negative Number");
@@ -271,6 +289,7 @@ public class NumberProfile {
         if (NumberProfile.checkIsStrongNumber(userInput)) System.out.println(userInput + " is a Strong number");
         if (NumberProfile.getInteger(userInput)) System.out.println(userInput + " is an Integer");
         if (NumberProfile.checkIsFibonacci(userInput)) System.out.println(userInput + " is in the Fibonacci Sequence");
+        if (NumberProfile.getAmiableNumber(userInput)) System.out.println(userInput + " is an Amiable Number");
 
         System.out.println("Factors:   " + NumberProfile.getFactorOfNumber(userInput));
         System.out.println("Square:    " + NumberProfile.getSquareOfNumber(userInput));
